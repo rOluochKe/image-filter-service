@@ -39,12 +39,12 @@ import { filterImageFromURL, deleteLocalFiles } from './util/util';
 
     try {
       const filePath: string = await filterImageFromURL(image_url)
-      res.status(200).sendFile(filePath, {}, (err) => {
+      res.status(200).sendFile(filePath, {}, (err: any) => {
         if (err) { return res.status(422).send('Not able to process the image'); }
         deleteLocalFiles([filePath]);
       })
     } catch (err) {
-      res.status(422).send(`Not able to process the image, Make sure image url is correct`);
+      res.status(422).send(`Not able to process the image, The image is too big`);
     }
   });
 
